@@ -60,12 +60,6 @@ public class KalkulatorTransporty extends Application {
         iloscKilometrow.setFont(font);
         iloscKilometrow.setPadding(new Insets(30));
 
-//        Label czasPracyOpis = new Label("Czas pracy Zespołu Wyjazdowego w godzinach ( każda rozpoczęta godzina liczona jest jako pełna)");
-//        czasPracyOpis.setLayoutX(10);
-//        czasPracyOpis.setLayoutY(50);
-//        czasPracyOpis.setFont(font);
-//        czasPracyOpis.setWrapText(true);
-
         Label czasPracyKierSan = new Label("Czas pracy Zespołu karetki: Kierowca + Sanitariusz \n ( każda rozpoczęta godzina liczona jest jako pełna)");
         czasPracyKierSan.setLayoutX(180);
         czasPracyKierSan.setLayoutY(90);
@@ -103,8 +97,7 @@ public class KalkulatorTransporty extends Application {
 
         Image logoCitomed = new Image("image001.jpg");
         ImageView imageViewlogoCitomed = new ImageView(logoCitomed);
-//        imageViewlogoCitomed.setX(550);
-//        imageViewlogoCitomed.setY(450);
+
         imageViewlogoCitomed.setPreserveRatio(true);
 
         Button buttonWynik = new Button("Oblicz transport");
@@ -116,17 +109,7 @@ public class KalkulatorTransporty extends Application {
         iloscKm.setLayoutX(10);
         iloscKm.setLayoutY(10);
         iloscKm.setPromptText("Ilość km");
-        checkTextIsNumeric(iloscKm.getText());
 
-
-//        iloscKm.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                if (!checkTextIsNumeric(iloscKm.getText())){
-//                    iloscKm.setStyle("-fx-text-fill: green");
-//                }
-//            }
-//        });
 
 
         TextField czasKierSan = new TextField();
@@ -153,25 +136,6 @@ public class KalkulatorTransporty extends Application {
         });
 
 
-//        FlowPane flowPane = new FlowPane();
-//        flowPane.getChildren().addAll(
-//                iloscKilometrow,
-//                iloscKm,
-//                czasPracyKierSan,
-//                czasKierSan,
-//                checkCzyZespDod,
-//                czasPracyDodZesp,
-//                czasDodZesp,
-//                buttonWynik,
-//                kosztCalkowity,
-//                wynikObliczen
-//
-//        );
-//        flowPane.setOrientation(Orientation.VERTICAL);
-//        flowPane.setPadding(new Insets(20));
-//        flowPane.setVgap(30);
-//        flowPane.setAlignment(Pos.TOP_CENTER);
-
         HBox hBox = new HBox();
         hBox.getChildren().add(imageViewlogoCitomed);
         hBox.setPadding(new Insets(10));
@@ -193,26 +157,13 @@ public class KalkulatorTransporty extends Application {
         borderPane.setCenter(gridPane);
         borderPane.setRight(hBox);
 
-//        Group group = new Group();
-//        group.getChildren().add(iloscKilometrow);
-//        group.getChildren().add(czasPracyOpis);
-//        group.getChildren().add(czasPracyKierSan);
-//        group.getChildren().add(czasPracyDodZesp);
-//        group.getChildren().add(kosztCalkowity);
-//        group.getChildren().add(imageViewlogoCitomed);
-//        group.getChildren().add(buttonWynik);
-//        group.getChildren().add(iloscKm);
-//        group.getChildren().add(czasKierSan);
-//        group.getChildren().add(czasDodZesp);
-//        group.getChildren().add(checkCzyZespDod);
-
         buttonWynik.setOnAction(event -> {
             kosztCalkowity.setDisable(false);
 
             double wynik = obliczKosztTransportu(Double.parseDouble(iloscKm.getText()), Double.parseDouble(czasKierSan.getText()));
 
             if (checkCzyZespDod.isSelected()) {
-                wynik += kosztZDeska(Double.parseDouble(czasDodZesp.getText())*100*0.01);
+                wynik += kosztZDeska(Double.parseDouble(czasDodZesp.getText()) * 100 * 0.01);
 
             }
             System.out.printf("Wynik to: %.2f zł", wynik);
@@ -220,7 +171,7 @@ public class KalkulatorTransporty extends Application {
             wynikObliczen.setText(roundFormat(wynik) + " zł brutto");
         });
 
-        //TODO weryfikacja czy wprowadza się liczbę
+ 
 
         // scene
         Scene scene = new Scene(borderPane, Color.gray(0.95));
@@ -241,8 +192,6 @@ public class KalkulatorTransporty extends Application {
 
 
     }
-
-
 
 
 }
